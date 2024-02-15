@@ -41,7 +41,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": null,
+            "image": ""
         },
         "likes": 56,
         "created": "2021-04-03"
@@ -64,17 +64,25 @@ const posts = [
 const containerElement = document.getElementById("container");
 
 posts.forEach(function(currentPost, index) {
-    
+
+   
     // inserisco l'elemento 
     containerElement.innerHTML += `
     <div class="post">
 
 
             <div class="post__header">
-                <div class="post-meta">                    
-                    <div class="post-meta__icon">
-                        <img class="profile-pic" src="${currentPost.author.image}" alt="${currentPost.author.name}">                    
+                <div class="post-meta"> 
+                
+                
+                    <div class="post-meta__icon"}>
+                    ${currentPost.author.image ? `
+                        <img class="profile-pic" src="${currentPost.author.image}" alt="${currentPost.author.name}">
+                    `:`
+                        <div class="profile-pic">${currentPost.author.name.charAt(0)}</div>
+                    `}                
                     </div>
+                    
                     <div class="post-meta__data">
                         <div class="post-meta__author">${currentPost.author.name}</div>
                         <div class="post-meta__time">${currentPost.created}</div>
