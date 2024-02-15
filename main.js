@@ -62,9 +62,7 @@ const posts = [
 
 // prelevo il container 
 const containerElement = document.getElementById("container");
-// dichiaro l'array 
-let likedPosts = [];
-console.log(likedPosts);
+
 
 posts.forEach(function(currentPost, index) {
     // inserisco l'elemento 
@@ -97,7 +95,7 @@ posts.forEach(function(currentPost, index) {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button  js-like-button" href="#" data-postid="${index + 1}">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
@@ -114,9 +112,9 @@ posts.forEach(function(currentPost, index) {
 })
 
 
-
-// Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. 
-// Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+// dichiaro l'array 
+let likedPosts = [];
+console.log(likedPosts);
 
 // aggiungo un event listener per tutti i btn
 const likeButtons = document.querySelectorAll(".like-button");
@@ -133,8 +131,14 @@ likeButtons.forEach(function(likeBtn, index){
         // incrementa il contatore dei likes
         const currentLikes = parseInt(likeCounter.textContent);
         likeCounter.textContent = currentLikes + 1;
+
+        
+
+        
+        // prelevo l'id del post 
+        const postId = likeBtn.getAttribute("data-postid");
+        likedPosts.push(postId);
+        
+        
     })
-
-    
-
 })
