@@ -123,22 +123,27 @@ likeButtons.forEach(function(likeBtn, index){
 
         // previene il btn da ogni azione 
         like.preventDefault();
-        // aggiungo la classe --liked
-        likeBtn.classList.add("like-button--liked");
+        // aggiungo o rimuovo la classe --liked
+        likeBtn.classList.toggle("like-button--liked");
 
         // prelevo il contatore dei like 
         const likeCounter = document.getElementById(`like-counter-${index + 1}`)
-        // incrementa il contatore dei likes
-        const currentLikes = parseInt(likeCounter.textContent);
-        likeCounter.textContent = currentLikes + 1;
 
-        
 
-        
+        // decrementa il contatore dei likes se il post è già stato likato
+        if (!likeBtn.classList.contains("like-button--liked")) {
+            const currentLikes = parseInt(likeCounter.textContent);
+            likeCounter.textContent = currentLikes - 1;
+        } else {
+            // incrementa il contatore dei likes se il post non è ancora stato likato
+            const currentLikes = parseInt(likeCounter.textContent);
+            likeCounter.textContent = currentLikes + 1;
+        }
+    
         // prelevo l'id del post 
         const postId = likeBtn.getAttribute("data-postid");
-        likedPosts.push(postId);
-        
-        
+        likedPosts.push(postId); 
+
+
     })
 })
