@@ -64,7 +64,11 @@ const posts = [
 const containerElement = document.getElementById("container");
 
 
+
 posts.forEach(function(currentPost, index) {
+
+    // prelevo le iniziali 
+    const initials = currentPost.author.name.split(" ").map((word) => word[0]).join("");
     // inserisco l'elemento 
     containerElement.innerHTML += `
     <div class="post">
@@ -78,7 +82,7 @@ posts.forEach(function(currentPost, index) {
                     ${currentPost.author.image ? `
                         <img class="profile-pic" src="${currentPost.author.image}" alt="${currentPost.author.name}">
                     `:`
-                        <div class="profile-pic">${currentPost.author.name.charAt(0)}</div>
+                        <div class="profile-pic">${initials}</div>
                     `}                
                     </div>
                     
