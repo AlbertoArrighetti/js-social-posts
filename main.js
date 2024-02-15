@@ -62,10 +62,11 @@ const posts = [
 
 // prelevo il container 
 const containerElement = document.getElementById("container");
+// dichiaro l'array 
+let likedPosts = [];
+console.log(likedPosts);
 
 posts.forEach(function(currentPost, index) {
-
-   
     // inserisco l'elemento 
     containerElement.innerHTML += `
     <div class="post">
@@ -102,7 +103,7 @@ posts.forEach(function(currentPost, index) {
                         </a>
                     </div>
                     <div class="likes__counter">
-                        Piace a <b id="like-counter-1" class="js-likes-counter">${currentPost.likes}</b> persone
+                        Piace a <b id="like-counter-${index + 1}" class="js-likes-counter">${currentPost.likes}</b> persone
                     </div>
                 </div> 
             </div>   
@@ -110,4 +111,30 @@ posts.forEach(function(currentPost, index) {
             
         </div>
     `
+})
+
+
+
+// Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e incrementiamo il counter dei likes relativo. 
+// Salviamo in un secondo array gli id dei post ai quali abbiamo messo il like.
+
+// aggiungo un event listener per tutti i btn
+const likeButtons = document.querySelectorAll(".like-button");
+likeButtons.forEach(function(likeBtn, index){
+    likeBtn.addEventListener("click", function(like){
+
+        // previene il btn da ogni azione 
+        like.preventDefault();
+        // aggiungo la classe --liked
+        likeBtn.classList.add("like-button--liked");
+
+        // prelevo il contatore dei like 
+        const likeCounter = document.getElementById(`like-counter-${index + 1}`)
+        // incrementa il contatore dei likes
+        const currentLikes = parseInt(likeCounter.textContent);
+        likeCounter.textContent = currentLikes + 1;
+    })
+
+    
+
 })
