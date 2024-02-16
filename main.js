@@ -69,6 +69,11 @@ posts.forEach(function(currentPost, index) {
 
     // prelevo le iniziali 
     const initials = currentPost.author.name.split(" ").map((word) => word[0]).join("");
+    
+    const oldDate = new Date(currentPost.created);
+    const newDate = oldDate.toLocaleDateString("it-IT")
+    
+    
     // inserisco l'elemento 
     containerElement.innerHTML += `
     <div class="post">
@@ -88,7 +93,7 @@ posts.forEach(function(currentPost, index) {
                     
                     <div class="post-meta__data">
                         <div class="post-meta__author">${currentPost.author.name}</div>
-                        <div class="post-meta__time">${currentPost.created}</div>
+                        <div class="post-meta__time">${newDate}</div>
                     </div>                    
                 </div>
             </div>
@@ -122,6 +127,7 @@ console.log(likedPosts);
 
 // aggiungo un event listener per tutti i btn
 const likeButtons = document.querySelectorAll(".like-button");
+
 likeButtons.forEach(function(likeBtn, index){
     likeBtn.addEventListener("click", function(like){
 
