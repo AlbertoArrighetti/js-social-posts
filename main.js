@@ -87,7 +87,7 @@ posts.forEach(function(currentPost, index) {
                     ${currentPost.author.image ? `
                         <img class="profile-pic" src="${currentPost.author.image}" alt="${currentPost.author.name}">
                     `:`
-                        <div class="profile-pic">${initials}</div>
+                        <span class="profile-pic-default">${initials}</span>
                     `}                
                     </div>
                     
